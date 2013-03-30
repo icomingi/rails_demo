@@ -1,0 +1,3 @@
+class FilterItem < ActiveRecord::Base
+  attr_accessible :driver_id, :result_id
+end

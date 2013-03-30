@@ -1,0 +1,15 @@
+class CreateDriverRecords < ActiveRecord::Migration
+  def change
+    create_table :driver_records do |t|
+      t.string :name
+      t.text :description
+      t.string :seats
+      t.string :start
+      t.string :end
+      t.string :image_url
+      t.decimal :price
+
+      t.timestamps
+    end
+  end
+end

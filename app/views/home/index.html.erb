@@ -1,0 +1,9 @@
+<h1>josherich#index</h1>
+<p>it is now <%= Time.now %>
+</br>
+<%= link_to "index.html", home_index_path %>
+<%= 1.hour.from_now %>
+<% for file in @files %>
+<ul>file name is: <%= file %></ul>
+<% end %>
+</p>

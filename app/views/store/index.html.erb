@@ -1,0 +1,18 @@
+<% if notice %>
+<p id="notice"><%= notice %></p>
+<% end %>
+
+<h1><%= @driver_records.count %>Results</h1>
+
+<% @driver_records.each do |record| %>
+<div class="entry">
+  <%= image_tag(record.image_url) %>
+  <h3><%= record.name %></h3>
+  <%=sanitize record.description %>
+  <div class="price_line">
+    <span class="price"><%= record.price %></span>
+    <%= button_to 'Add to favorite', filter_items_path(:driver_id => record) %>
+  </div>
+</div>
+<% end %>
+

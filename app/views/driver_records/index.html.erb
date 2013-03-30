@@ -1,0 +1,35 @@
+<h1>Listing driver_records</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Description</th>
+    <th>Seats</th>
+    <th>Start</th>
+    <th>End</th>
+    <th>Image url</th>
+    <th>Price</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @driver_records.each do |driver_record| %>
+  <tr>
+    <td><%= driver_record.name %></td>
+    <td><%= driver_record.description %></td>
+    <td><%= driver_record.seats %></td>
+    <td><%= driver_record.start %></td>
+    <td><%= driver_record.end %></td>
+    <td><%= driver_record.image_url %></td>
+    <td><%= driver_record.price %></td>
+    <td><%= link_to 'Show', driver_record %></td>
+    <td><%= link_to 'Edit', edit_driver_record_path(driver_record) %></td>
+    <td><%= link_to 'Destroy', driver_record, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Driver record', new_driver_record_path %>

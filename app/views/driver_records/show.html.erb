@@ -1,0 +1,40 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @driver_record.name %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @driver_record.description %>
+</p>
+
+<p>
+  <b>Seats:</b>
+  <%= @driver_record.seats %>
+</p>
+
+<p>
+  <b>Start:</b>
+  <%= @driver_record.start %>
+</p>
+
+<p>
+  <b>End:</b>
+  <%= @driver_record.end %>
+</p>
+
+<p>
+  <b>Image url:</b>
+  <%= @driver_record.image_url %>
+</p>
+
+<p>
+  <b>Price:</b>
+  <%= @driver_record.price %>
+</p>
+
+
+<%= link_to 'Edit', edit_driver_record_path(@driver_record) %> |
+<%= link_to 'Back', driver_records_path %>
