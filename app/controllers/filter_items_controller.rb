@@ -46,7 +46,8 @@ class FilterItemsController < ApplicationController
 
     respond_to do |format|
       if @filter_item.save
-        
+
+      end
     end
   end
 
@@ -77,4 +78,5 @@ class FilterItemsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
 end
