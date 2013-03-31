@@ -1,7 +1,13 @@
 class PagesController < ApplicationController
   def home
   	@title = "HitchHiker | Home Page"
-    @route_record = RouteRecord.new if signed_in?
+    if signed_in?
+      @route_record = RouteRecord.new
+    else
+      @user = User.new
+      @route_record = RouteRecord.new
+    end
+    
   	# render :js => "alert('for you');"
   	# render :status => :forbidden
 
