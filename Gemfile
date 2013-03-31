@@ -6,6 +6,11 @@ gem 'rails', '3.2.13'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'pg'
+group :production do
+	gem 'annotate', '>=2.5.0'
+	gem 'will_paginate', '~>3.0'
+	gem 'faker', '1.0.1'
+end
 
 group :development do
 	gem 'rspec-rails', '~>2.0'
