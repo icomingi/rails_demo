@@ -2,5 +2,5 @@
 	<td class="id"><%= route_record.id %></td>
 	<td class="from"><%= route_record.from %></td>
 	<td class="to"><%= route_record.to %></td>
-	<td class="created"><%= route_record.created_at %></td>
+	<td class="created"><%= time_ago_in_words(route_record.created_at) %> ago</td>
 </tr>

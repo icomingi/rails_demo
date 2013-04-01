@@ -1,16 +1,14 @@
 <p id="notice"><%= notice %></p>
 
 <ul class="nav nav-tabs">
-	<li class="active"><a href="#home" data-toggle="tab">我的HH</a></li>
+	<li class="active"><a href="#home" data-toggle="tab">我的路线</a></li>
+	<li><a href="#saved_routes" data-toggle="tab">我收藏的路线</a></li>
 	<li><a href="#profile" data-toggle="tab">账号</a></li>
 	<li><a href="#messages" data-toggle="tab">收件箱</a></li>
 </ul>
 <div class="tab-content">
 	<div class="tab-pane active" id="home">
-		<p>
-			<b>Email:</b>
-			<%= @user.email %>
-		</p>
+		<p>我的路线</p>
 		<% unless @user.route_records.empty? %>
 		<table class="table table-hover route_records" summary="User route_record">
 			<thead>
@@ -24,8 +22,35 @@
 			<tbody>
 				<%= render @route_records %>
 			</tbody>
-			</table>
+		</table>
 		<%= will_paginate @route_records %>
+		<% end %>
+
+	</div>
+	<div class="tab-pane" id="saved_routes">
+		<p>我收藏的路线</p>
+		<% unless @user.relationships.empty? %>
+		<table class="table table-hover saved_routes" summary="User relationships">
+			<thead>
+				<tr>
+					<th>ID</th>
+					<th>起点</th>
+					<th>终点</th>
+					<th>创建时间</th>
+				</tr>
+			</thead>
+			<tbody>
+				<% @following.each do |following| %>
+				<tr>
+					<td class="id"><%= following.id %></td>
+					<td class="from"><%= following.from %></td>
+					<td class="to"><%= following.to %></td>
+					<td class="created"><%= time_ago_in_words(following.created_at) %> ago</td>
+				</tr>
+				<% end %>
+			</tbody>
+		</table>
+		<% will_paginate @following %>
 		<% end %>
 	</div>
 	<div class="tab-pane" id="profile">

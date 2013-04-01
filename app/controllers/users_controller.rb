@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
-  before_filter :authenticate, :only => [:edit, :update]
-  before_filter :correct_user, :only => [:edit, :update]
+  before_filter :authenticate, :only => [:show, :edit, :update]
+  before_filter :correct_user, :only => [:show, :edit, :update]
 
   # GET /users
   # GET /users.json
@@ -19,6 +19,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
 
     @route_records = @user.route_records.paginate(:page => params[:page])
+    @following = @user.following.paginate(:page => params[:page])
     @title = "Dashboard"
     respond_to do |format|
       format.html # show.html.erb
@@ -98,6 +99,5 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     redirect_to(root_path) unless correct_user?(@user)
   end
-
 
 end

@@ -36,7 +36,7 @@ class User < ActiveRecord::Base
 	end
 
 	def follow!(route)
-		relationships.create!(：route_id => route.id	)
+		relationships.create!(:route_id => route.id	)
 	end
 
 	def unfollow!(route)

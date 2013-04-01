@@ -7,7 +7,12 @@ Demo::Application.routes.draw do
   match '/signin',  :to => 'sessions#new'
   match '/signout', :to => 'sessions#destroy'
 
-  resources :users
+  resources :users do
+    member do
+      get :route_records
+    end
+  end
+  
   resources :sessions, :only => [:new, :create, :destroy]
   resources :route_records, :only => [:create, :destroy]
   resources :driver_records
