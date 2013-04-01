@@ -3,7 +3,9 @@ class User < ActiveRecord::Base
 	attr_accessible :email, :name, :password, :password_confirmation
 
 	has_many :route_records, :dependent => :destroy
-
+	has_many :relationships, :foreign_key => "follower_id", :dependent => :destroy
+	has_many :following, :through => :relationships, :source => :route
+	
 	email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 
 	# validates :name, :presence => true, :length => { :maximum => 50 }
@@ -29,6 +31,18 @@ class User < ActiveRecord::Base
 		(user && user.salt == cookie_salt) ? user : nil
 	end
 
+	def following?(route)
+		relationships.find_by_route_id(route)
+	end
+
+	def follow!(route)
+		relationships.create!(：route_id => route.id	)
+	end
+
+	def unfollow!(route)
+		relationships.find_by_route_id(route).destroy
+	end
+	
 	private
 
 	def encrypt_password

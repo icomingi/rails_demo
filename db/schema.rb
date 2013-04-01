@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130330122416) do
+ActiveRecord::Schema.define(:version => 20130401084753) do
 
   create_table "driver_records", :force => true do |t|
     t.string   "name"
@@ -32,6 +32,16 @@ ActiveRecord::Schema.define(:version => 20130330122416) do
     t.datetime "updated_at",                :null => false
     t.integer  "quantity",   :default => 1
   end
+
+  create_table "relationships", :force => true do |t|
+    t.integer  "follower_id"
+    t.integer  "route_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  add_index "relationships", ["follower_id"], :name => "index_relationships_on_follower_id"
+  add_index "relationships", ["route_id"], :name => "index_relationships_on_route_id"
 
   create_table "results", :force => true do |t|
     t.datetime "created_at", :null => false
