@@ -12,9 +12,18 @@
 			<%= @user.email %>
 		</p>
 		<% unless @user.route_records.empty? %>
-		<table class="route_records" summary="User route_record">
-			<%= render @route_records %>
-		</table>
+		<table class="table table-hover route_records" summary="User route_record">
+			<thead>
+				<tr>
+					<th>起点</th>
+					<th>终点</th>
+					<th>创建时间</th>
+				</tr>
+			</thead>
+			<tbody>
+				<%= render @route_records %>
+			</tbody>
+			</table>
 		<%= will_paginate @route_records %>
 		<% end %>
 	</div>

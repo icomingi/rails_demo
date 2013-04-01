@@ -1,88 +1,31 @@
 body {
-	width: 100%;
-	background: #277ede;
-	text-shadow: 0 1px 1px #fff;
-	margin: 0;
-	padding: 0;
-	overflow: hidden;
-	height: 100%;
+	padding-bottom: 60px;
 }
 
 .container {
-	position: relative;
-	width: 810px;
-	margin: auto;
+	margin: 0 auto;
+	max-width: 1000px;
+}
+
+.nav-bar {
+	text-align: center;
+
+}
+.nav-bar ul {
+	float: right;
+	list-style: none;
+
+}
+.nav-bar ul li {
+	list-style: none;
+	float: right;
+	display: inline-block;
 }
 
 .round {
 	--moz-border-radius: 5px;
 	--webkit-border-radius: 5px;
 	border-radius: 5px;
-}
-
-header {
-	padding-top: 0px;
-	position: relative;
-}
-
-header img {
-	padding: 1em;
-	background: #fff;
-}
-
-.hheader {
-	height: 70px;
-	background: white;
-
-}
-
-.hcenter {
-	width: 710px;
-	padding: 0px, auto;
-}
-
-.haccount {
-	float: right;
-	background-color: white;
-	padding: 0 0.7em;
-	white-space: nowrap;
-}
-
-.hcenter ul li {
-	list-style-type: none;
-	display: inline-block;
-}
-
-.dropdown-menu li {
-	display: block;
-}
-
-.hcenter li a {
-	display: inline-block;
-}
-
-.hcenter ul li a {
-	padding: 0 5px;
-	font-weight: bold;
-}
-
-.hcenter ul li a:visited {
-	color: #09c;
-}
-
-.hcenter ul li a:hover {
-	text-decoration: underline;
-	color: #a4a4a4;
-}
-section {
-	margin-top: 1em;
-	font-size: 120%;
-	padding: 20px;
-	background: #fff;
-}
-
-section h1 {
-	font-size: 200%;
 }
 
 a {
@@ -96,37 +39,10 @@ a:hover {
 }
 
 
-
-
-a.signup_button {
-	margin-left: 10px;
-	margin-right: auto;
-	display: block;
-	text-align: center;
-	width: 190px;
-	color: #fff;
-	background: #006400;
-	font-size: 150%;
-	font-weight: bold;
-	padding: 20px;
+#mainbar div {
+	display: inline-block;
 }
-
-footer {
-	text-align: center;
-	margin: 10px;
-	width: 710px;
-	margin-left: auto;
-	margin-right: auto;
-}
-footer nav ul li {
-	list-style: none;
-	display:inline-block;
-}
-
-footer nav {
-	float: none;
-}
-
-div.field, div.actions {
+#mainbar button {
 	margin-bottom: 10px;
 }
+

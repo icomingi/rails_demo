@@ -1,7 +1,8 @@
-<h1>HitchHiker</h1>
-<p>This is the home page of HitchHiker</p>
+<h1>Get a Ride</h1>
+
 <% if signed_in? %>
 <p>User Customized data</p>
+<p>Hello <%= current_user.email %></p>
 <% else %>
 <% end %>
 <%= render 'shared/route_record_form' %>

@@ -3,8 +3,8 @@ class RouteRecordsController < ApplicationController
 
 	def create
 		@route_record = current_user.route_records.build(params[:route_record])
-		if @route_record.save
-			flash[:success] = "route created"
+		if @route_record.save and signed_in?
+			flash[:success] = "complete the route"
 			redirect_to root_path
 		else
 			render 'pages/home'
