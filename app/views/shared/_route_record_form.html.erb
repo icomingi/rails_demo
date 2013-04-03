@@ -1,7 +1,7 @@
 <%= form_for @route_record do |f| %>
 <div id="mainbar">
-	<%= f.text_field :from, :placeholder => "起点", :"data-provide" => "typehead" %>
-	<%= f.text_field :to, :placeholder => "终点", :"data-provide" => "typehead" %>
+	<%= f.text_field :from, :id => "from", :placeholder => "起点", :"data-provide" => "typehead" %>
+	<%= f.text_field :to, :id => "to", :placeholder => "终点", :"data-provide" => "typehead" %>
 	<button type="submit" class="btn btn-success">搜</button>
 	<button name = "commit" type="submit" class="btn btn-primary">新建</button>
 </div>
