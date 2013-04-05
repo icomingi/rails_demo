@@ -14,7 +14,8 @@ Demo::Application.routes.draw do
   end
   
   resources :sessions, :only => [:new, :create, :destroy]
-  resources :route_records, :only => [:create, :destroy]
+  resources :route_records
+  resources :relationships, :only => [:create, :destroy]
   resources :driver_records
   resources :filter_items
   

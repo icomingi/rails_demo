@@ -1,8 +1,8 @@
 <p id="notice"><%= notice %></p>
 
 <ul class="nav nav-tabs">
-	<li class="active"><a href="#home" data-toggle="tab">我的路线</a></li>
-	<li><a href="#saved_routes" data-toggle="tab">我收藏的路线</a></li>
+	<li class="active"><a href="#home" data-toggle="tab">我的路线 (<%= @user.route_records.count %>)</a></li>
+	<li><a href="#saved_routes" data-toggle="tab">我收藏的路线 (<%= @user.relationships.count %>)</a></li>
 	<li><a href="#profile" data-toggle="tab">账号</a></li>
 	<li><a href="#messages" data-toggle="tab">收件箱</a></li>
 </ul>
