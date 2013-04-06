@@ -1,11 +1,11 @@
 <header>
 	<div class="hheader">
-		<div clas="nav-bar">
-			<div class="icon"><a href="/"><img src=""></a></div>
+		<div class="nav-bar">
+			<%= image_tag("rails.png", :alt => "demo", :class => "round icon") %>
 			<ul class="haccount">
 				<li class="sns">
-					<a href=""><div class="weibo icon">weibo icon</div></a>
-					<a href=""><div class="QQ icon">QQ icon</div></a>
+					<a href="#"><div class="weibo icon">weibo icon</div></a>
+					<a href="#"><div class="QQ icon">QQ icon</div></a>
 				</li>
 				<% if signed_in? %>
 				<li>

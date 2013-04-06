@@ -6,7 +6,7 @@ class RelationshipsController < ApplicationController
 		current_user.follow!(@route_record)
 		respond_to do |format|
 			format.html { redirect_to @route_record }
-			format.js
+			format.js {}
 		end
 	end
 
