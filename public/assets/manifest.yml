@@ -13,5 +13,7 @@ homepage.js: homepage-6bb5fcc22b8169b50310de430ca669ff.js
 homepage/index.js: homepage-6bb5fcc22b8169b50310de430ca669ff.js
 application.css: application-67e9f0974157eed2b47ed57031f1bc2e.css
 application/index.css: application-67e9f0974157eed2b47ed57031f1bc2e.css
+custom.css: custom-ab6d6a910e2a54c189d43d3ae1292afb.css
+custom/index.css: custom-ab6d6a910e2a54c189d43d3ae1292afb.css
 jquery.min.map: jquery.min-6c267bfd2b3f36e6edccb2e584934c1c.map
 jquery/index.min.map: jquery.min-6c267bfd2b3f36e6edccb2e584934c1c.map
