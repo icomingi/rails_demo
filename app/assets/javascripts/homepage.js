@@ -1,42 +1,78 @@
 function G(id) {
     return document.getElementById(id);
 }
-var next = G("to");
-next.addEventListener("click", function() {
-    ac = new BMap.Autocomplete(
-    {
-        "input": "to",
-        "location": "上海市"
-    });
-});
 
-var ac = new BMap.Autocomplete( //建立一个自动完成的对象
+var from_str;
+var to_str;
+
+var map = new BMap.Map("map_container");
+map.enableContinuousZoom();
+map.enableScrollWheelZoom();
+var point = new BMap.Point(116.404, 39.915);
+map.centerAndZoom(point, 15);
+
+var driving = new BMap.DrivingRoute(map, {renderOptions:{map: map, autoViewport: true}});
+var traffic = new BMap.TrafficLayer();
+// map.addTileLayer(traffic);
+
+var from = new BMap.Autocomplete( //建立一个自动完成的对象
 {
     "input": "from",
     "location": "上海市"
 });
 
-ac.addEventListener("onhighlight", function(e) { //鼠标放在下拉列表上的事件
-    var str = "";
-    var _value = e.fromitem.value;
-    var value = "";
-    if (e.fromitem.index > -1) {
-        value = _value.province + _value.city + _value.district + _value.street + _value.business;
-    }
-    str = "FromItem<br />index = " + e.fromitem.index + "<br />value = " + value;
-
-    value = "";
-    if (e.toitem.index > -1) {
-        _value = e.toitem.value;
-        value = _value.province + _value.city + _value.district + _value.street + _value.business;
-    }
-    str += "<br />ToItem<br />index = " + e.toitem.index + "<br />value = " + value;
-    G("searchResultPanel").innerHTML = str;
+var to = new BMap.Autocomplete({
+    "input": "to",
+    "location": "上海市"
 });
 
-var myValue;
-ac.addEventListener("onconfirm", function(e) { //鼠标点击下拉列表后的事件
+var geolocation = new BMap.Geolocation();
+
+// init
+(function(){
+    if ( document.title == "Dashboard") {
+        var record = $("tbody tr:first");
+        from_str = record.find(".from").text();
+        to_str = record.find(".to").text();
+        var table = $("table tr");
+        table.click( function(){
+            from_str = $(this).find(".from").text();
+            to_str = $(this).find(".to").text();
+            driving.search(from_str, to_str);
+        });
+    } else if ( document.title == "Home" ) {
+        from_str = G("from").value;
+        to_str = G("to").value;
+    }
+})();
+
+geolocation.getCurrentPosition(function(r){
+    if(this.getStatus() == BMAP_STATUS_SUCCESS){
+        var mk = new BMap.Marker(r.point);
+        map.addOverlay(mk);
+        map.panTo(r.point);
+        var cor = r.point.lng + r.point.lat;
+        // alert('您的位置：'+r.point.lng+','+r.point.lat);
+
+        //parse coordinate
+        var gc = new BMap.Geocoder();
+        gc.getLocation(r.point, function(rs){
+            var addComp = rs.addressComponents;
+            from.setInputValue( addComp.city + addComp.district + addComp.street + addComp.streetNumber );
+            // alert(addComp.province + ", " + addComp.city + ", " + addComp.district + ", " + addComp.street + ", " + addComp.streetNumber);
+        });
+    }
+    else {
+        alert('failed'+this.getStatus());
+    }
+});
+
+// trigger the route finder when dest input
+to.addEventListener("onconfirm", function(e) {
     var _value = e.item.value;
-    myValue = _value.province + _value.city + _value.district + _value.street + _value.business;
-    G("searchResultPanel").innerHTML = "onconfirm<br />index = " + e.item.index + "<br />myValue = " + myValue;
-});
+    // to_str = _value.province + _value.city + _value.district + _value.street + _value.business;
+    from_str = G("from").value;
+    to_str = G("to").value;
+    G("info").innerHTML = from_str + " 到 " + to_str;
+    driving.search( from_str, to_str );
+})

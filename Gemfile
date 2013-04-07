@@ -11,7 +11,6 @@ group :production do
 	gem 'annotate', '>=2.5.0'
 	gem 'will_paginate', '~>3.0'
 	gem 'faker', '1.0.1'
-	gem 'thin'
 	gem 'pg'
 end
 

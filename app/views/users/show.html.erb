@@ -6,31 +6,32 @@
 	<li><a href="#profile" data-toggle="tab">账号</a></li>
 	<li><a href="#messages" data-toggle="tab">收件箱</a></li>
 </ul>
+<div id="map_container"></div>
 <div class="tab-content">
 	<div class="tab-pane active" id="home">
-		<p>我的路线</p>
 		<% unless @user.route_records.empty? %>
-		<table class="table table-hover route_records" summary="User route_record">
-			<thead>
-				<tr>
-					<th>ID</th>
-					<th>起点</th>
-					<th>终点</th>
-					<th>创建时间</th>
-				</tr>
-			</thead>
-			<tbody>
-				<%= render @route_records %>
-			</tbody>
-		</table>
+		<div class="scroll_table">
+			<table class="table table-hover my_routes" summary="User route_record">
+				<thead>
+					<tr>
+						<th>ID</th>
+						<th>起点</th>
+						<th>终点</th>
+						<th>创建时间</th>
+					</tr>
+				</thead>
+				<tbody>
+					<%= render @route_records %>
+				</tbody>
+			</table>
+		</div>
 		<%= will_paginate @route_records %>
 		<% end %>
 
 	</div>
 	<div class="tab-pane" id="saved_routes">
-		<p>我收藏的路线</p>
 		<% unless @user.relationships.empty? %>
-		<table class="table table-hover saved_routes" summary="User relationships">
+		<table class="table table-hover following_routes" summary="User relationships">
 			<thead>
 				<tr>
 					<th>ID</th>
