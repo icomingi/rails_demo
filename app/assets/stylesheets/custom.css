@@ -1,8 +1,14 @@
 body {
+	padding-top: 0;
 	padding-bottom: 60px;
 }
 
+body, label, input, textarea, select, button {
+	font-family: 'Helvetica Neue',Arial,'Liberation Sans',FreeSans,'Hiragino Sans GB',sans-serif,"Microsoft YaHei",微软雅黑,"Microsoft JhengHei",华文细黑,STHeiti,MingLiu;
+}
 .container {
+	margin: 0;
+	padding: 0 10px;
 	max-width: 960px;
 }
 
@@ -11,7 +17,9 @@ ul {
 }
 
 .nav-bar {
+	padding-top: 0;
 	height: 80px;
+	background-color: rgb(255, 252, 245);
 }
 
 .nav-bar img {
@@ -19,13 +27,17 @@ ul {
 }
 
 .nav-bar ul {
-	float: right;
+
 }
 
-.nav-bar ul li {
+.haccount > li {
+	float: right;
 	list-style: none;
 }
 
+.content {
+	background-color: rgb(255, 252, 245);
+}
 .round {
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
@@ -64,4 +76,8 @@ a:hover {
 .scroll_table {
 	height: 500px;
 	overflow: auto;
+}
+
+.sns {
+	padding-top: 5px;
 }

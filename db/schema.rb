@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130401084753) do
+ActiveRecord::Schema.define(:version => 20130408071519) do
 
   create_table "driver_records", :force => true do |t|
     t.string   "name"
@@ -55,6 +55,10 @@ ActiveRecord::Schema.define(:version => 20130401084753) do
     t.integer  "user_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.string   "lng_s"
+    t.string   "lat_s"
+    t.string   "lng_d"
+    t.string   "lat_d"
   end
 
   add_index "route_records", ["user_id"], :name => "index_route_records_on_user_id"

@@ -1,4 +1,5 @@
-<% unless @route_records.empty? %>
+<div id="map_container"></div>
+<% unless @results.empty? %>
 <table class="table table-hover route_records" summary="User route_record">
 	<thead>
 		<tr>
@@ -11,8 +12,8 @@
 		</tr>
 	</thead>
 	<tbody>
-		<%= render @route_records %>
+		<%= render @results %>
 	</tbody>
 </table>
-<%= will_paginate @route_records %>
+<%= will_paginate @results %>
 <% end %>

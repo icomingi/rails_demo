@@ -3,7 +3,18 @@ class RouteRecordsController < ApplicationController
 
 	def create
 		@route_record = current_user.route_records.build(params[:route_record])
-		if @route_record.save and signed_in?
+		from_str = params[:route_record][:from]
+		to_str = params[:route_record][:to]
+		if params[:search] || !@route_record.save
+			search = RouteRecord.search do
+				fulltext from_str do
+					fields(:from)
+				end
+				order_by :created_at, :desc
+			end
+			@results = search.results
+			render :action => 'search'
+		elsif @route_record.save and signed_in?
 			flash[:success] = "complete the route"
 			redirect_to root_path
 		else
@@ -27,6 +38,10 @@ class RouteRecordsController < ApplicationController
 			format.html
 			format.json { render json: @route_record }
 		end
+	end
+
+	def search
+		@title = "search result"
 	end
 
 	def edit

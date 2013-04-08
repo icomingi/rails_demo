@@ -1,9 +1,14 @@
-rails_demo
+The Ultimate Hitchhiker's Guide to the Officxy, by RoR
 ==========
+A HitchHiker app from scratch
+
 ##Current features
-* session for sign in and sing up
-* add a new route record
-* follow and unfollow route records
+* Session for sign in and sing up
+* User profile page
+* Add a new route record
+* Follow and unfollow route records
+* Text searching routes
+* Map display for each route record
 
 ##TODO
 * search module, query route records and rank by keyword, distance

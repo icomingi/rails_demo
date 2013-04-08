@@ -6,12 +6,12 @@ gem 'rails', '3.2.13'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'pg'
+gem 'sunspot_rails'
 
 group :production do
 	gem 'annotate', '>=2.5.0'
 	gem 'will_paginate', '~>3.0'
 	gem 'faker', '1.0.1'
-	gem 'pg'
 end
 
 group :development do
@@ -19,6 +19,7 @@ group :development do
 	gem 'annotate', '>=2.5.0'
 	gem 'will_paginate', '~>3.0'
 	gem 'faker', '1.0.1'
+	gem 'sunspot_solr'
 end
 
 # Gems used only for assets and not required

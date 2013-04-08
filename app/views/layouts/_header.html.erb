@@ -3,11 +3,6 @@
 		<div class="nav-bar">
 			<%= image_tag("rails.png", :alt => "demo", :class => "round icon") %>
 			<ul class="haccount">
-				<li class="sns">
-					<a href="#"><div class="weibo icon">weibo icon</div></a>
-					<a href="#"><div class="QQ icon">QQ icon</div></a>
-				</li>
-				<% if signed_in? %>
 				<li>
 					<div class="btn-group">
 						<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
@@ -21,6 +16,22 @@
 						</ul>
 					</div>
 				</li>
+				<li class="sns weibo">
+					<a title="微博登陆" href="#">
+						<div class="weibo-icon">
+							<%= image_tag("loginbtn_04.png", :alt => "weibo", :class => "round") %>
+						</div>
+					</a>
+				</li>
+				<li class="sns qq">
+					<a title="QQ登陆" href="#">
+						<div class="weibo-icon">
+							<%= image_tag("loginbtn_03.png", :alt => "QQ", :class => "round") %>
+						</div>
+					</a>
+				</li>
+				<% if signed_in? %>
+
 				<% else %>
 				<li><%= link_to "Sign in", signin_path %></li>
 				<li><%= link_to "Sign up", signup_path %></li>

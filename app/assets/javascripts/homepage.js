@@ -27,6 +27,7 @@ var to = new BMap.Autocomplete({
 });
 
 var geolocation = new BMap.Geolocation();
+var myGeo = new BMap.Geocoder();
 
 // init
 (function(){
@@ -38,7 +39,7 @@ var geolocation = new BMap.Geolocation();
         table.click( function(){
             from_str = $(this).find(".from").text();
             to_str = $(this).find(".to").text();
-            driving.search(from_str, to_str);
+            driving.search( from_str, to_str );
         });
     } else if ( document.title == "Home" ) {
         from_str = G("from").value;
@@ -73,6 +74,22 @@ to.addEventListener("onconfirm", function(e) {
     // to_str = _value.province + _value.city + _value.district + _value.street + _value.business;
     from_str = G("from").value;
     to_str = G("to").value;
-    G("info").innerHTML = from_str + " 到 " + to_str;
     driving.search( from_str, to_str );
-})
+    var data = "no value";
+    myGeo.getPoint( from_str, function(p){
+        if (p) {
+            $("#route_record_lng_s").prop("value", p.lng);
+            $("#route_record_lat_s").prop("value", p.lat);
+            data = p.lng + ":" + p.lat;
+        }
+    }, "上海市");
+    myGeo.getPoint( to_str, function(p){
+        if (p) {
+            data += ";" + p.lng + ":" + p.lat;
+            $("#route_record_lng_d").prop("value", p.lng);
+            $("#route_record_lat_d").prop("value", p.lat);
+            $("#route_record_data").prop("value", data);
+        }
+    }, "上海市" );
+    G("info").innerHTML = from_str + " 到 " + to_str;
+});
