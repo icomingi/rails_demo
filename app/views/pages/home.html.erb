@@ -1,9 +1,10 @@
 <% if signed_in? %>
-<p>User Customized data</p>
+
 <p>Hello <%= current_user.email %></p>
 <% else %>
 <% end %>
 <div class="main_map">
-	<div id="map_container"></div>
+	<div id="map_container" class="imgborder"></div>
 </div>
 <%= render 'shared/search_form' %>
+<div id="search_result_home"></div>

@@ -8,13 +8,16 @@ class RouteRecord < ActiveRecord::Base
 	validates :to, :presence => true, :length => { :maximum => 20 }
 
 	searchable :auto_index => false, :auto_remove => false do
-		text :from, :to 
+		text :from, :to
 		text :data
 		double	:lng_s
 		double	:lat_s
 		double	:lng_d
 		double	:lat_d
 		time	:created_at
+		latlon(:location) {
+			Sunspot::Util::Coordinates.new(lng_s, lat_s)
+		}
 	end
 
 	default_scope :order => 'route_records.created_at DESC'

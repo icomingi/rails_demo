@@ -6,18 +6,23 @@ Demo::Application.routes.draw do
   match '/signup',  :to => 'users#new'
   match '/signin',  :to => 'sessions#new'
   match '/signout', :to => 'sessions#destroy'
+  
+  match '/route_records/search/:col/:kw',  :to => 'route_records#search'
 
   resources :users do
-    member do
-      get :route_records
+    resources :route_records
+  end
+
+  resources :route_records do
+    collection do
+      get 'search'
     end
   end
+
   
   resources :sessions, :only => [:new, :create, :destroy]
   resources :route_records
   resources :relationships, :only => [:create, :destroy]
-  resources :driver_records
-  resources :filter_items
   
   root :to => 'pages#home'
 

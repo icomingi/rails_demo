@@ -7,6 +7,8 @@ gem 'rails', '3.2.13'
 
 gem 'pg'
 gem 'sunspot_rails'
+gem 'rabl-rails'
+gem 'geocoder'
 
 group :production do
 	gem 'annotate', '>=2.5.0'

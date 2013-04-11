@@ -2,14 +2,45 @@ function G(id) {
     return document.getElementById(id);
 }
 
+function handleGPS( type, string ) {
+    myGeo.getPoint(string, function(p){
+        if (p) {
+            setGPS( type, p );
+        } else {
+            alert("no GPS result for " + string);
+        }
+    }, "上海市");
+
+    function setGPS( s, point ) {
+        if ( s == "src" ) {
+            $("#route_record_lng_s").prop("value", point.lng);
+            $("#route_record_lat_s").prop("value", point.lat);
+            data = point.lng + ":" + point.lat;
+        }
+        if ( s == "des") {
+            $("#route_record_lng_d").prop("value", point.lng);
+            $("#route_record_lat_d").prop("value", point.lat);
+            data += ";" + point.lng + ":" + point.lat;
+            $("#route_record_data").prop("value", data);
+        } else {
+            return;
+        }
+    }
+}
+
+function updateInput() {
+    from_str = G("from").value;
+    to_str = G("to").value;
+}
+
 var from_str;
 var to_str;
-
+var data;
 var map = new BMap.Map("map_container");
+var initPoint = new BMap.Point(121.404, 42.915);
 map.enableContinuousZoom();
 map.enableScrollWheelZoom();
-var point = new BMap.Point(116.404, 39.915);
-map.centerAndZoom(point, 15);
+map.centerAndZoom(initPoint, 15);
 
 var driving = new BMap.DrivingRoute(map, {renderOptions:{map: map, autoViewport: true}});
 var traffic = new BMap.TrafficLayer();
@@ -42,8 +73,7 @@ var myGeo = new BMap.Geocoder();
             driving.search( from_str, to_str );
         });
     } else if ( document.title == "Home" ) {
-        from_str = G("from").value;
-        to_str = G("to").value;
+        updateInput();
     }
 })();
 
@@ -60,6 +90,7 @@ geolocation.getCurrentPosition(function(r){
         gc.getLocation(r.point, function(rs){
             var addComp = rs.addressComponents;
             from.setInputValue( addComp.city + addComp.district + addComp.street + addComp.streetNumber );
+            updateInput();
             // alert(addComp.province + ", " + addComp.city + ", " + addComp.district + ", " + addComp.street + ", " + addComp.streetNumber);
         });
     }
@@ -68,28 +99,17 @@ geolocation.getCurrentPosition(function(r){
     }
 });
 
+from.addEventListener("onconfirm", function(e) {
+    handleGPS( "src", from_str );
+});
+
 // trigger the route finder when dest input
 to.addEventListener("onconfirm", function(e) {
     var _value = e.item.value;
     // to_str = _value.province + _value.city + _value.district + _value.street + _value.business;
-    from_str = G("from").value;
-    to_str = G("to").value;
+    updateInput();
     driving.search( from_str, to_str );
-    var data = "no value";
-    myGeo.getPoint( from_str, function(p){
-        if (p) {
-            $("#route_record_lng_s").prop("value", p.lng);
-            $("#route_record_lat_s").prop("value", p.lat);
-            data = p.lng + ":" + p.lat;
-        }
-    }, "上海市");
-    myGeo.getPoint( to_str, function(p){
-        if (p) {
-            data += ";" + p.lng + ":" + p.lat;
-            $("#route_record_lng_d").prop("value", p.lng);
-            $("#route_record_lat_d").prop("value", p.lat);
-            $("#route_record_data").prop("value", data);
-        }
-    }, "上海市" );
+
+    handleGPS( "des", to_str );
     G("info").innerHTML = from_str + " 到 " + to_str;
 });

@@ -1,15 +1,21 @@
 body {
-	padding-top: 0;
-	padding-bottom: 60px;
+	margin: 0;
+	padding: 0;
+	background-color: rgb(255, 252, 245);
 }
 
 body, label, input, textarea, select, button {
 	font-family: 'Helvetica Neue',Arial,'Liberation Sans',FreeSans,'Hiragino Sans GB',sans-serif,"Microsoft YaHei",微软雅黑,"Microsoft JhengHei",华文细黑,STHeiti,MingLiu;
 }
+
 .container {
 	margin: 0;
 	padding: 0 10px;
 	max-width: 960px;
+}
+
+.imgborder {
+	border: 1px  solid #000000;
 }
 
 ul {
@@ -19,7 +25,6 @@ ul {
 .nav-bar {
 	padding-top: 0;
 	height: 80px;
-	background-color: rgb(255, 252, 245);
 }
 
 .nav-bar img {
@@ -33,15 +38,21 @@ ul {
 .haccount > li {
 	float: right;
 	list-style: none;
+	padding-left: 15px;
 }
 
 .content {
-	background-color: rgb(255, 252, 245);
+	
 }
 .round {
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
 	border-radius: 5px;
+}
+
+footer li {
+	display: inline;
+	text-align: center;
 }
 
 a {
@@ -54,20 +65,19 @@ a:hover {
 	text-decoration: underline;
 }
 
-.center {
+#map_container {
+	height: 250px;
+	width: 95%;
 	margin: 0 auto;
 }
 
-#map_container {
-	height: 250px;
-	width: 100%;
-}
-
 .search_bar {
+	margin: 0 auto;
 	padding: 10px 0;
 }
-.search_bar div {
-	display: inline-block;
+.center {
+	width: 600px;
+	margin: 0 auto;
 }
 .search_bar button {
 	margin-bottom: 10px;
