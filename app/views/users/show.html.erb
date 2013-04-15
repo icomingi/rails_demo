@@ -1,12 +1,14 @@
 <p id="notice"><%= notice %></p>
 
 <ul class="nav nav-tabs">
-	<li class="active"><a href="#home" data-toggle="tab">我的路线 (<%= @user.route_records.count %>)</a></li>
-	<li><a href="#saved_routes" data-toggle="tab">我收藏的路线 (<%= @user.relationships.count %>)</a></li>
-	<li><a href="#profile" data-toggle="tab">账号</a></li>
-	<li><a href="#messages" data-toggle="tab">收件箱</a></li>
+	<li class="active tab home"><a href="#home" data-toggle="tab">我的路线 (<%= @user.route_records.count %>)</a></li>
+	<li class="tab saved_routes"><a href="#saved_routes" data-toggle="tab">我收藏的路线 (<%= @user.relationships.count %>)</a></li>
+	<li class="tab profile"><a href="#profile" data-toggle="tab">账号</a></li>
+	<li class="tabl messages"><a href="#messages" data-toggle="tab">收件箱</a></li>
 </ul>
-<div id="map_container" class="imgborder"></div>
+<div id="main_map">
+	<div id="map_container" class="imgborder"></div>
+</div>
 <div class="tab-content">
 	<div class="tab-pane active" id="home">
 		<% unless @user.route_records.empty? %>

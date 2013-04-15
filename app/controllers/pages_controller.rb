@@ -1,6 +1,7 @@
 class PagesController < ApplicationController
+  
   def home
-  	@title = "HitchHiker | Home Page"
+  	@title = "Home"
     if signed_in?
       @route_record = RouteRecord.new
     else

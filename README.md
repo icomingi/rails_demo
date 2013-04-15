@@ -17,6 +17,6 @@ A HitchHiker app from scratch
 * search module, query route records and rank by keyword, distance
 * better look
 * refractory and cleanup mess code
-* simple mail module
+* simple mail module, act like WeChat
 * one-page app for better and faster UX, using turbolinks
 * SNS integration, QQ, weibo

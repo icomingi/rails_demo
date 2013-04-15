@@ -83,8 +83,8 @@ class RouteRecordsController < ApplicationController
 			fulltext from_str do
 				fields(:from)
 			end
-			order_by :created_at
-			# order_by_geodist(:location, from_co[0], from_co[1])
+			# order_by :created_at
+			order_by_geodist(:location, from_co[0], from_co[1])
 		end
 		results = search.results
 		@match_from_count = search.total

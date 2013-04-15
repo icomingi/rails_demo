@@ -33,11 +33,21 @@ function updateInput() {
     to_str = G("to").value;
 }
 
+function ajaxRequest(method, url){
+    $.ajax({
+        type: method,
+        url: url,
+        success: function(data){
+        }
+    });
+    return false;
+}
+
 var from_str;
 var to_str;
 var data;
 var map = new BMap.Map("map_container");
-var initPoint = new BMap.Point(121.404, 42.915);
+var initPoint = new BMap.Point(121.608477, 31.207143);
 map.enableContinuousZoom();
 map.enableScrollWheelZoom();
 map.centerAndZoom(initPoint, 15);
@@ -60,7 +70,7 @@ var to = new BMap.Autocomplete({
 var geolocation = new BMap.Geolocation();
 var myGeo = new BMap.Geocoder();
 
-// init
+// init()
 (function(){
     if ( document.title == "Dashboard") {
         var record = $("tbody tr:first");
@@ -72,10 +82,48 @@ var myGeo = new BMap.Geocoder();
             to_str = $(this).find(".to").text();
             driving.search( from_str, to_str );
         });
+        map = $("#map_container");
+        $(".messages, .profile").click( function() {
+            map.hide();
+        });
+        $(".saved_routes, .home").click( function() {
+            map.show();
+        });
     } else if ( document.title == "Home" ) {
         updateInput();
     }
+    ajaxRequest('GET', '/conversations');
 })();
+
+/////////////////// Events binding //////////////////////////
+jQuery(window).scroll(function() {
+    var t = jQuery(window).scrollTop();
+    if(t >= 30){
+        jQuery('#main_map').addClass('fixtop');
+    }
+    if (t < 30){
+        jQuery('#main_map').removeClass('fixtop');
+    }
+});
+
+jQuery('#mailbox-btn').tooltip({
+    placement : 'right'
+}).click(openMailboxSidebar);
+jQuery('.mailbox_sidebar_close').click(closeMailboxSidebar);
+jQuery('.mailbox_sidebar_back').click(backToConversations);
+
+function openMailboxSidebar(){
+    jQuery('body').addClass('mailbox_sidebar_enabled');
+    // jQuery('#feedbackForm input:submit').removeClass('disabled').removeAttr('disabled');
+    // jQuery('#feedbackForm').fadeIn();
+}
+function closeMailboxSidebar(){
+    jQuery('body').removeClass('mailbox_sidebar_enabled');
+}
+
+function backToConversations(){
+    ajaxRequest('GET', '/conversations');
+}
 
 geolocation.getCurrentPosition(function(r){
     if(this.getStatus() == BMAP_STATUS_SUCCESS){

@@ -1,8 +1,10 @@
 <header>
 	<div class="hheader">
 		<div class="nav-bar">
-			<%= image_tag("rails.png", :alt => "demo", :class => "round icon") %>
+			<div class="logo">
+				<a href="/"><%= image_tag("rails.png", :alt => "demo", :class => "round icon") %></a>
 			<ul class="haccount">
+				<% if signed_in? %>
 				<li>
 					<div class="btn-group">
 						<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
@@ -30,7 +32,7 @@
 						</div>
 					</a>
 				</li>
-				<% if signed_in? %>
+				
 
 				<% else %>
 				<li><%= link_to "Sign in", signin_path %></li>

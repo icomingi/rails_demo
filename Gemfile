@@ -9,6 +9,8 @@ gem 'pg'
 gem 'sunspot_rails'
 gem 'rabl-rails'
 gem 'geocoder'
+gem 'mailboxer'
+# gem 'avatars_for_rails'
 
 group :production do
 	gem 'annotate', '>=2.5.0'

@@ -9,7 +9,7 @@ body, label, input, textarea, select, button {
 }
 
 .container {
-	margin: 0;
+	margin: 0 auto;
 	padding: 0 10px;
 	max-width: 960px;
 }
@@ -65,11 +65,22 @@ a:hover {
 	text-decoration: underline;
 }
 
-#map_container {
-	height: 250px;
+#main_map {
+	height: 260px;
 	width: 95%;
 	margin: 0 auto;
 }
+
+#map_container {
+	height: 100%;
+	width: 100%;
+}
+
+/*TODO*/
+/*.fixtop { 
+	position: fixed;
+	top: 30px;
+}*/
 
 .search_bar {
 	margin: 0 auto;
@@ -90,4 +101,197 @@ a:hover {
 
 .sns {
 	padding-top: 5px;
+}
+
+#mailbox-btn {
+	position: fixed;
+	left: 10px;
+	top: 70px;
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	box-shadow: 0 1px 2px rgba(0,0,0,0.15)
+}
+#mailbox-btn:hover {
+	background: #111110;
+	background: rgba(0,0,0,0.8);
+}
+#mailbox-btn span {
+	text-indent: -9999em;
+}
+
+.mailbox_sidebar {
+	opacity: 0;
+	filter: alpha(opacity=0);
+	width: 0;
+	height: 500px;
+	position: fixed;
+	left: 10px;
+	top: 50px;
+	-webkit-transition: all .5s;
+	-moz-transition: all .5s;
+	-ms-transition: all .5s;
+	-o-transition: all .5s;
+	transition: all .5s;
+	-webkit-transform: scale3d(0.1, 1, 1);
+	-moz-transform: scale3d(0.1, 1, 1);
+	-ms-transform: scale3d(0.1, 1, 1);
+	-o-transform: scale3d(0.1, 1, 1);
+	transform: scale3d(0.1, 1, 1);
+	display: block;
+	line-height: 0;
+	overflow: hidden;
+	z-index: 100;
+}
+body.mailbox_sidebar_enabled .mailbox_sidebar{
+	width: 200px;
+	opacity: 1;
+	filter: alpha(opacity=0);
+	-khtml-opacity: 1;
+	-moz-opacity: 1;
+	-webkit-transform: scale3d(1, 1, 1);
+	-moz-transform: scale3d(1, 1, 1);
+	-ms-transform: scale3d(1, 1, 1);
+	-o-transform: scale3d(1, 1, 1);
+	transform: scale3d(1, 1, 1);
+}
+body.mailbox_sidebar_enabled .container {
+	margin-left: 250px;
+	width: 70%;
+}
+
+.mailbox_sidebar_back {
+	-webkit-transition: background-color .2s;
+	-moz-transition: background-color .2s;
+	-ms-transition: background-color .2s;
+	-o-transition: background-color .2s;
+	transition: background-color .2s;
+	width: 40px;
+	height: 40px;
+	display: none;
+	line-height: 39px;
+	text-align: center;
+	cursor: pointer;
+	position: absolute;
+	top: 10px;
+	left: 10px;
+	color: #646462;
+	font-size: 22px;
+	font-family: Arial;
+	background: #ffffff;
+}
+
+.mailbox_sidebar_close, .search_overlay_close {
+	-webkit-transition: background-color .2s;
+	-moz-transition: background-color .2s;
+	-ms-transition: background-color .2s;
+	-o-transition: background-color .2s;
+	transition: background-color .2s;
+	width: 40px;
+	height: 40px;
+	display: none;
+	line-height: 39px;
+	text-align: center;
+	cursor: pointer;
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	color: #646462;
+	font-size: 22px;
+	font-family: Arial;
+	background: #ffffff;
+}
+
+body.mailbox_sidebar_enabled .mailbox_sidebar_close {
+	display: block;
+}
+
+body.mailbox-back-enabled .mailbox_sidebar_back {
+	display: block;
+}
+
+.mailbox_sidebar_close:hover, .search_overlay_close:hover {
+    background: #dededc;
+}
+
+#mailbox_sidebar_wrapper {
+	height: 100%;
+	padding: 5px;
+	margin: 0 auto;
+	background: #dfdede;
+}
+
+#mailbox_sidebar_body {
+	height: 90%;
+	padding: 3px;
+	margin: 0;
+}
+
+#mailbox_sidebar_inner {
+	height: 100%;
+	margin: 0;
+}
+
+.convContent {
+	height: 300px;
+}
+
+/*.chat_table {
+	height: 400px;
+}
+.chat_table tr {
+	border: 1px solid;
+}
+.conversation_thread {
+	height: 400px;
+}*/
+
+.search_overlay {
+	opacity: 0;
+	filter :alpha(opacity=0);
+	width: 100%;
+	height: 0;
+	line-height: 0;
+	overflow: hidden;
+	z-index: 100;
+	position: fixed;
+	top: 0;
+	left: 0;
+	background-color: rgba(237,237,235,0.98);
+	-webkit-transition: all .5s;
+	-moz-transition: all .5s;
+	-ms-transition: all .5s;
+	-o-transition: all .5s;
+	transition: all .5s;
+	-webkit-transform: scale3d(0.1, 0.1, 1);
+	-moz-transform: scale3d(0.1, 0.1, 1);
+	-ms-transform: scale3d(0.1, 0.1, 1);
+	-o-transform: scale3d(0.1, 0.1, 1);
+	transform: scale3d(0.1, 1, 0.1);
+}
+
+.search_overlay_enabled .search_overlay{
+	height: 500px;
+	opacity: 1;
+	filter: alpha(opacity=0);
+	-khtml-opacity: 1;
+	-moz-opacity: 1;
+	-webkit-transform: scale3d(1, 1, 1);
+	-moz-transform: scale3d(1, 1, 1);
+	-ms-transform: scale3d(1, 1, 1);
+	-o-transform: scale3d(1, 1, 1);
+	transform: scale3d(1, 1, 1);
+
+}
+
+#search_overlay_close {
+
+}
+
+#search_overlay_wrapper {
+
+}
+
+#search_overlay_inner {
+
 }

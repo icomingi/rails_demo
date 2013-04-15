@@ -1,10 +1,15 @@
 <% if signed_in? %>
-
 <p>Hello <%= current_user.email %></p>
 <% else %>
 <% end %>
-<div class="main_map">
+<div id="main_map">
 	<div id="map_container" class="imgborder"></div>
 </div>
 <%= render 'shared/search_form' %>
-<div id="search_result_home"></div>
+
+<div>debug:</div>
+<div>var: <%= @debug if !@debug.nil? %></div><br>
+<%= link_to "inbox", :controller => "conversations", :action => "index" %>
+<%= form_tag do %>
+	content
+<% end %>

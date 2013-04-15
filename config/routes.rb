@@ -7,7 +7,7 @@ Demo::Application.routes.draw do
   match '/signin',  :to => 'sessions#new'
   match '/signout', :to => 'sessions#destroy'
   
-  match '/route_records/search/:col/:kw',  :to => 'route_records#search'
+  # match '/route_records/search/:col/:kw',  :to => 'route_records#search'
 
   resources :users do
     resources :route_records
@@ -19,10 +19,19 @@ Demo::Application.routes.draw do
     end
   end
 
+  resources :conversations do
+    member do
+      put 'trash', 'untrash', 'reply'
+    end
+  end
+
   
   resources :sessions, :only => [:new, :create, :destroy]
   resources :route_records
   resources :relationships, :only => [:create, :destroy]
+  
+  resources :messages
+  resources :notifications
   
   root :to => 'pages#home'
 

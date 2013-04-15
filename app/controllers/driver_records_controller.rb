@@ -15,7 +15,6 @@ class DriverRecordsController < ApplicationController
   # GET /driver_records/1.json
   def show
     @driver_record = DriverRecord.find(params[:id])
-
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @driver_record }
@@ -42,7 +41,6 @@ class DriverRecordsController < ApplicationController
   # POST /driver_records.json
   def create
     @driver_record = DriverRecord.new(params[:driver_record])
-
     respond_to do |format|
       if @driver_record.save
         format.html { redirect_to @driver_record, notice: 'Driver record was successfully created.' }

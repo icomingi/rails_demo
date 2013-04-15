@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+	acts_as_messageable
+	
 	attr_accessor :password
 	attr_accessible :email, :name, :password, :password_confirmation
 
@@ -16,6 +18,14 @@ class User < ActiveRecord::Base
 	
 	before_save :encrypt_password
 
+	def name
+		return :name
+	end
+
+	def mailboxer_email(object)
+		return :email
+	end
+	
 	def has_password?(submitted_password)
 		encrypted_password == encrypt(submitted_password)
 	end
